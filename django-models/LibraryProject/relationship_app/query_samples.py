@@ -11,4 +11,4 @@ library_obj = Library.objects.get(name=library_name)
 library_obj.books.all()
 
 library_name = "library"
-librarian = library_obj.librarian
+librarian = Librarian.objects.get(library=library_name)
