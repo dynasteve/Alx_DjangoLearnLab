@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
-from .models import *
+from .models import Book, Library
 
 # Create your views here.
 def fbv_book_details(request):
