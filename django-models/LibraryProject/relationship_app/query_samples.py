@@ -5,7 +5,7 @@ author_obj = Author.objects.get(name = author)
 author_obj.books.objects.all()
 
 library_name = "library"
-library_obj = Library.objects.get(name = library_name)
+library_obj = Library.objects.get(name=library_name)
 library_obj.books.all()
 
 librarian = "librarian"
