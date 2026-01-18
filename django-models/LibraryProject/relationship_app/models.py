@@ -35,7 +35,7 @@ class Librarian(models.Model):
       return self.name
     
     
-class UserProfile(User):
+class UserProfile(models.Model):
   role_choices = [
     ('admin', "Admin"),
     ('librarian', 'Librarian'),
