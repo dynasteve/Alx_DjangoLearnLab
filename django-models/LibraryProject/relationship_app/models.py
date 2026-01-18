@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Author(models.Model):
@@ -31,3 +34,20 @@ class Librarian(models.Model):
   def __str__(self):
       return self.name
     
+    
+class UserProfile(User):
+  role_choices = [
+    ('admin', "Admin"),
+    ('librarian', 'Librarian'),
+    ('member', 'Member'),
+  ]
+  user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
+  role = models.CharField(max_length=50, choices=role_choices)
+  
+  def __str__(self):
+     return f"{self.user.username} has role {self.role}"
+   
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance, role='member')

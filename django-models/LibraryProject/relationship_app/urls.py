@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import list_books, LibrayDetailView, LoginView, LogoutView, SignUpView
+from . import views
+from .views import list_books, LibrayDetailView, LoginView, LogoutView, SignUpView, logout_confirm
 #LibraryDetailView
 
 app_name='rel_app'
@@ -8,6 +9,10 @@ urlpatterns = [
     path('fbv/', list_books, name='fbv_details'),
     path('cbv/<int:pk>/', LibrayDetailView.as_view(), name='cbv_details'),
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', SignUpView.as_view(), name='register'),
+    path('logout_confirm/', logout_confirm, name='logout_confirm'),
+    path('admin/', views.admin_view, name='admin_view'),
+    path('librarian/', views.librarian_view, name='librarian_view'),
+    path('member/', views.member_view, name='member_view'),
 ]
