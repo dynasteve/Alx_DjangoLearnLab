@@ -7,6 +7,7 @@ app_name='rel_app'
 # views.register
 # add_book/
 # edit_book/
+# path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html), name='logout')
 urlpatterns = [
     path('fbv/', list_books, name='fbv_details'),
     path('cbv/<int:pk>/', LibrayDetailView.as_view(), name='cbv_details'),
