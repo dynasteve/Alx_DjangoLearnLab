@@ -25,7 +25,7 @@ def add_book(request):
 def book_list(request):
   books = Book.objects.all()
   
-  return render(request, 'bookshelf/list_books.html',{"books": books})
+  return render(request, 'bookshelf/book_list.html',{"books": books})
 
 
 @permission_required('can_view_book', raise_exception=True)
