@@ -11,7 +11,7 @@ class Book(models.Model):
   title = models.CharField(max_length=200)
   author = models.CharField(max_length=100)
   publication_year = models.IntegerField()
-  description = models.TextField(blank=True, null=True, default=None)
+  description = models.TextField(blank=True, default='')
   
   class Meta:
     permissions = [
