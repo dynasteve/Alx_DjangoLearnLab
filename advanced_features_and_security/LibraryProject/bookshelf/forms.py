@@ -18,3 +18,7 @@ class CreateBookForm(forms.ModelForm):
       raise forms.ValidationError("Author cannot be empty")
     if not pub_year or pub_year == None:
       raise forms.ValidationError("Publication Year cannot be empty")
+    
+    
+class ExampleForm(forms.Form):
+  text = forms.Textarea(max_length=1000)
