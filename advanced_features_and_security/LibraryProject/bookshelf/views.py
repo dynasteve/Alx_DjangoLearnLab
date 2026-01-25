@@ -45,4 +45,4 @@ def view_book(request, pk):
 def example_form_view(request):
   form = ExampleForm()
   
-  return render(request, 'bookshelf/example_form.html', {'form': form})
+  return render(request, 'bookshelf/form_example.html', {'form': form})
