@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from .models import Book
-from .forms import CreateBookForm
+from .forms import ExampleForm, CreateBookForm
 
 def index(request):
   return render(request, 'bookshelf/index.html')
@@ -41,3 +41,8 @@ def view_book(request, pk):
   
   return render(request, 'crud_book/read_book.html', {'book': book})
 
+
+def example_form_view(request):
+  form = ExampleForm()
+  
+  return render(request, 'bookshelf/example_form.html', {'form': form})
