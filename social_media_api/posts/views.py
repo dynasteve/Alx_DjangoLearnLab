@@ -8,6 +8,8 @@ from .serializers import PostSerializer, CommentSerializer
 from .permissions import IsOwnerOrReadOnly
 from .models import Post, Comment
 
+# permissions.IsAuthenticated
+# Post.objects.filter(author__in=following_users).order_by
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
