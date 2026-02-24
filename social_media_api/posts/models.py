@@ -22,3 +22,5 @@ class Comment(models.Model):
   
   def __str__(self):
     return f"comment by {self.author.username} to {self.post}"
+  
+  # models.TextField()
