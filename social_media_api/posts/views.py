@@ -1,11 +1,26 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import filters
-from .models import Post, Comment
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import PostSerializer, CommentSerializer
 from .permissions import IsOwnerOrReadOnly
+from .models import Post, Comment
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def feed_view(request):
+    following_users = request.user.following.all()
+
+    posts = Post.objects.filter(
+        author__in=following_users
+    ).order_by('-created_at')
+
+    serializer = PostSerializer(posts, many=True)
+
+    return Response(serializer.data)
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-created_at')
