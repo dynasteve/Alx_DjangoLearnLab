@@ -6,6 +6,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
+# permissions.IsAuthenticated
+# CustomUser.objects.all()
 
 from .serializers import *
 
