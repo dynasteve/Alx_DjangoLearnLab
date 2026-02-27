@@ -13,6 +13,7 @@ from .models import Post, Comment, Like
 
 # permissions.IsAuthenticated
 # Post.objects.filter(author__in=following_users).order_by
+# generics.get_object_or_404(Post, pk=pk)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -65,10 +66,7 @@ class PostViewSet(viewsets.ModelViewSet):
     def like(self, request, pk=None):
         post = self.get_object()
 
-        like, created = Like.objects.get_or_create(
-            user=request.user,
-            post=post
-        )
+        like, created = Like.objects.get_or_create(user=request.user, post=post)
 
         if not created:
             return Response({"message": "Already liked."})
