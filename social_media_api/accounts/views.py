@@ -6,6 +6,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
+from django.contrib.contenttypes.models import ContentType
+from notifications.models import Notification
 # permissions.IsAuthenticated
 # CustomUser.objects.all()
 
@@ -68,6 +70,14 @@ def follow_user(request, user_id):
             )
 
         request.user.following.add(user_to_follow)
+        
+        Notification.objects.create(
+            recipient=user_to_follow,
+            actor=request.user,
+            verb="started following you",
+            content_type=ContentType.objects.get_for_model(user_to_follow),
+            object_id=user_to_follow.id
+        )
 
         return Response({"message": "Successfully followed user."})
 
