@@ -12,3 +12,6 @@ urlpatterns = router.urls
 urlpatterns += [
     path('feed/', feed_view, name='feed'),
 ]
+
+# <int:pk>/like/
+# <int:pk>/unlike/
